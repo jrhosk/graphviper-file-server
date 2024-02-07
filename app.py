@@ -11,10 +11,14 @@ def index():
 
 @app.route('/list')
 def list_available_files():
-    with open("file.download.json", "rb") as json_file:
+    with open("/home/jhoskins/mysite/file.download.json", "rb") as json_file:
         meta_data = json.load(json_file)
 
-    return list(meta_data.keys())
+    key_list = {}
+    for i, key in enumerate(meta_data.keys()):
+        key_list[i] = key
+
+    return key_list
 
 
 @app.route('/meta/<file_name>', methods=["GET"])
